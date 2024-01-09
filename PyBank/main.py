@@ -17,11 +17,11 @@ months =[]
 #open and read the csv file
 with open(csv_file) as budget_csv:
     csv_reader = csv.reader(budget_csv, delimiter=',')
-   
-    
+    csv_header = next(csv_reader)
+    print(f'CSV_header: {csv_header}')
     #skip header row
     
-    next(csv_reader)
+    
     #looping through rows and gathering data
     for row in csv_reader:
             #print(row)
@@ -68,6 +68,7 @@ with open(csv_file) as budget_csv:
     print(f'Greatest increase in profits:  {date_greatest} (${greatest_increase})')
     print(f'Greatest decrease is {date_smallest} (${greatest_loss})')
     
+    #creating variables for list to print to file
     line_1 = ('Financial Analysis:')
     line_2 = ('='*100)
     line_3 = (f'Total Months: {total_months}')
@@ -76,16 +77,19 @@ with open(csv_file) as budget_csv:
     line_6 = (f'Greatest increase in profits:  {date_greatest} (${greatest_increase})')
     line_7 = (f'Greatest decrease is {date_smallest} (${greatest_loss})')
     
+    #creating list
     lines = [line_1,line_2,line_3,line_4,line_5,line_6,line_7]
    
+    #setting path for writing txt file
     file_name = ("analysis.txt")
     output_folder = ("analysis")
     output_name = os.path.join(output_folder,file_name)
+    #opening that file and writing in info
     with open(output_name, 'w') as file:
     
-        
+        #adding '\n' for line break
         for line in lines:
             file.write(line + '\n')
         
-        print(f'output written to {output_name}' )
+       
 
